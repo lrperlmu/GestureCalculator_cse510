@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GestureCalculator/ViewController.swift"
-            timestampString = "561264028.28009"
+            timestampString = "562214015.9301161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
