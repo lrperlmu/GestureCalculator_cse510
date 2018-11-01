@@ -10,17 +10,17 @@ import UIKit
 import AVFoundation
 import UIKit.UIGestureRecognizerSubclass
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate{
+class ViewController1: UIViewController, UIGestureRecognizerDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        MultiStrokeGestureRecognizer.enableMultipleStrokes = true
+        /*MultiStrokeGestureRecognizer.enableMultipleStrokes = true
         MultiStrokeGestureRecognizer.allowedTimeBetweenMultipleStrokes = 0.6
         MultiStrokeGestureRecognizer.cancelsTouchesInView = false
-        //MultiStrokeGestureRecognizer.addTarget(self, action: #selector(didRecognize(_:)))
-        //self.view.addGestureRecognizer(MultiStrokeGestureRecognizer)
+        MultiStrokeGestureRecognizer.addTarget(self, action: #selector(didRecognize(_:)))
+        self.view.addGestureRecognizer(MultiStrokeGestureRecognizer)*/
         
         let SwipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.SwipeGesture))
         SwipeRight.direction = UISwipeGestureRecognizer.Direction.right
@@ -64,8 +64,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
         let equalgesture = UILongPressGestureRecognizer(target: self, action: #selector(self.equal))
         equalgesture.numberOfTouchesRequired = 1
         self.view.addGestureRecognizer(equalgesture)
-        //let pinch = UIPinchGestureRecognizer(target: self, action: #selector(self.pinchgesture))
-        //self.view.addGestureRecognizer(pinch)
         
         // backspace
         let backspacegesture = UILongPressGestureRecognizer(target: self, action: #selector(self.backspace))
@@ -80,11 +78,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
     
     @IBOutlet weak var resultview: UILabel!
     @IBOutlet weak var taplabel: UILabel!
-    fileprivate let MultiStrokeGestureRecognizer = MultiStrokeRecognizer()
+    //fileprivate let MultiStrokeGestureRecognizer = MultiStrokeRecognizer()
     
     var tap1 = 0
     var tap1time: Double?
-    //@IBOutlet weak var tapview: TouchableView!
     var number1 : Double?
     var number2 : Double?
     var textnumber = ""
@@ -190,12 +187,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
                 //    if Date().timeIntervalSinceReferenceDate - downswipetime! < 0.5{
                 temp_op = "+"
                 text_op = "plus"
-                //    }
-                //    downswipeflag = 0
-                //}
-                //else{
-                //    op = "^"
-                //}
             case UISwipeGestureRecognizer.Direction.left:
                 temp_op = "-"
                 text_op = "minus"
@@ -209,12 +200,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
                 //    if self.downswipeflag == 1{
                 temp_op = "/"
                 text_op = "divide"
-                //        self.downswipeflag = 0
-                //    }
-                //    else{
-                //        self.op = ""
-                //    }
-                //}
             default:
                 break
             }
@@ -229,6 +214,19 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
             }
             appendsymbol(temp_op)
             displayinput(text_to_display)            
+        }
+    }
+    
+    @objc func SwipeGesture2(sender:UIGestureRecognizer){
+        var temp_op: String = ""
+        var text_op: String = ""
+        if let SwipeGesture = sender as? UISwipeGestureRecognizer
+        {
+            temp_op = "^"
+            text_op = "caret"
+            appendsymbol(temp_op)
+            speaktext(text_op)
+            displayinput(text_to_display)
         }
     }
     
