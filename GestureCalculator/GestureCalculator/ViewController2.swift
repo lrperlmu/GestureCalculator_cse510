@@ -23,12 +23,12 @@ class ViewController2: UIViewController{
         
         let SwipeLeft1 = UISwipeGestureRecognizer(target: self, action: #selector(self.deletegesture))
         SwipeLeft1.direction = UISwipeGestureRecognizer.Direction.left
-        SwipeLeft1.numberOfTouchesRequired = 1
+        SwipeLeft1.numberOfTouchesRequired = 2
         self.view.addGestureRecognizer(SwipeLeft1)
         
         let SwipeLeft2 = UISwipeGestureRecognizer(target: self, action: #selector(self.cleargesture))
         SwipeLeft2.direction = UISwipeGestureRecognizer.Direction.left
-        SwipeLeft2.numberOfTouchesRequired = 2
+        SwipeLeft2.numberOfTouchesRequired = 3
         self.view.addGestureRecognizer(SwipeLeft2)
         
         
@@ -67,6 +67,9 @@ class ViewController2: UIViewController{
         let decimal = UILongPressGestureRecognizer(target: self, action: #selector(self.decimalgesture))
         decimal.numberOfTouchesRequired = 1
         self.view.addGestureRecognizer(decimal)
+        
+        //let logarithm = UIPinchGestureRecognizer(target: self, action: #selector(self.loggesture))
+        //self.view.addGestureRecognizer(logarithm)
     }
 
     var firstgesture : UIGestureRecognizer? = nil
@@ -78,11 +81,13 @@ class ViewController2: UIViewController{
     var textnumber = ""
     var text_to_display = ""
     var op = ""
+    //var touchbeganbutnotendedflag = 0
+    //var logstartflag = 0
     
     var counter = 0
-    var flag : Int?
-    var number1 : Double?
-    var number2 : Double?
+    var flag = 0
+    var number1 = "" //: Double? = 0
+    var number2 = "" //: Double? = 0
     var touchViews = [UITouch:TouchSpotView]()
     let synthesizer = AVSpeechSynthesizer()
     
@@ -109,6 +114,27 @@ class ViewController2: UIViewController{
     // 2
     downloadGroup.notify(queue: DispatchQueue.main) {
         completion?(storedError)
+    }
+    
+    @objc func loggesture(sender: UIPinchGestureRecognizer){
+        var result:Double?
+        if (sender.state == UIGestureRecognizer.State.ended) {
+            if sender.scale >= 1.0{
+                logstartflag = 1
+                text_to_display += "log("
+                displayinput(text_to_display)
+            }
+            else{
+                logstartflag = 0
+                text_to_display += ")"
+                displayinput(text_to_display)
+                result = log(Double(textnumber)!)
+                displayresult(String(result!))
+                speaktext(String(result!))
+                textnumber = ""
+            }
+        }
+        sender.scale = 1.0
     }*/
     
     @objc func digit0gesture(sender:UISwipeGestureRecognizer){
@@ -139,7 +165,7 @@ class ViewController2: UIViewController{
     
     @objc func digit6gesture(sender:UISwipeGestureRecognizer){
         if (sender.state == UIGestureRecognizer.State.ended) {
-            digit6flag = 1
+                digit6flag = 1
         }
     }
     
@@ -148,16 +174,18 @@ class ViewController2: UIViewController{
     @objc func equalsigngesture(sender:UISwipeGestureRecognizer) {
         var result:Double?
         if (sender.state == UIGestureRecognizer.State.ended) {
-            number2 = Double(textnumber)
+            number2 = textnumber
             switch op {
             case "*":
-                result = number1! * number2!
+                result = Double(number1)! * Double(number2)!
             case "/":
-                result = number1! / number2!
+                result = Double(number1)! / Double(number2)!
             case "-":
-                result = number1! - number2!
+                result = Double(number1)! - Double(number2)!
             case "+":
-                result = number1! + number2!
+                result = Double(number1)! + Double(number2)!
+            case "^":
+                result = pow(Double(number1)!, Double(number2)!)
             default:
                 result = 0.0
             }
@@ -165,20 +193,28 @@ class ViewController2: UIViewController{
             speaktext(String(result!))
             textnumber = ""
             op = ""
+            number1 = ""
+            number2 = ""
         }
     }
     
     @objc func deletegesture(sender:UISwipeGestureRecognizer) {
         if (sender.state == UIGestureRecognizer.State.ended) {
-            text_to_display.remove(at: text_to_display.index(before: text_to_display.endIndex))
-            displayinput(text_to_display)
-            //displayresult("")
-            if textnumber.isEmpty{
-                //textnumber = "~"
+            if !text_to_display.isEmpty{
+                if text_to_display.suffix(1) == op{
+                    op = ""
+                }
+                else if textnumber.isEmpty{
+                    number1.remove(at: number1.index(before: number1.endIndex))
+                }
+                else{
+                    textnumber.remove(at: textnumber.index(before: textnumber.endIndex))
+                }
+                text_to_display.remove(at: text_to_display.index(before: text_to_display.endIndex))
+                displayinput(text_to_display)
+                //displayresult("")
             }
-            else{
-                textnumber.remove(at: textnumber.index(before: textnumber.endIndex))
-            }
+            speaktext("delete")
         }
     }
     
@@ -189,14 +225,17 @@ class ViewController2: UIViewController{
             op = ""
             digit3flag = 0
             digit6flag = 0
+            number1 = ""
+            number2 = ""
             displayinput(text_to_display)
             displayresult("")
+            speaktext("clear")
         }
     }
     
     @objc func plusgesture(sender:UISwipeGestureRecognizer){
         op = "+"
-        number1 = Double(textnumber)
+        number1 = number1 + textnumber
         textnumber = ""
         appendsymbol("+")
         displayinput(text_to_display)
@@ -204,17 +243,26 @@ class ViewController2: UIViewController{
     }
     
     @objc func multiplygesture(sender:UISwipeGestureRecognizer){
-        op = "*"
-        number1 = Double(textnumber)
-        textnumber = ""
-        appendsymbol("*")
-        displayinput(text_to_display)
-        speaktext("multiply")
+        if op == "*"{
+            op = "^"
+            text_to_display.remove(at: text_to_display.index(before: text_to_display.endIndex))
+            appendsymbol("^")
+            displayinput(text_to_display)
+            speaktext("power")
+        }
+        else{
+            op = "*"
+            number1 = number1 + textnumber
+            textnumber = ""
+            appendsymbol("*")
+            displayinput(text_to_display)
+            speaktext("multiply")
+        }
     }
     
     @objc func dividegesture(sender:UISwipeGestureRecognizer){
         op = "/"
-        number1 = Double(textnumber)
+        number1 = number1 + textnumber
         textnumber = ""
         appendsymbol("/")
         displayinput(text_to_display)
@@ -222,12 +270,12 @@ class ViewController2: UIViewController{
     }
     
     @objc func minusgesture(sender:UISwipeGestureRecognizer){
-        if textnumber.isEmpty{
+        if textnumber.isEmpty && !op.isEmpty {
             textnumber += "-"
         }
         else{
             op = "-"
-            number1 = Double(textnumber)
+            number1 = number1 + textnumber
             textnumber = ""
         }
         appendsymbol("-")
@@ -235,72 +283,17 @@ class ViewController2: UIViewController{
         speaktext("minus")
     }
     
-    /*@objc func SwipeGesture(sender:UIGestureRecognizer){
-        if firstgesture == nil{
-            firstgesture = sender
-        }
-        else{
-            if let x = firstgesture as? UISwipeGestureRecognizer{
-                if let y = sender as? UISwipeGestureRecognizer{
-                    appendsymbol("$")
-                    displayinput(text_to_display)
-                }
-            }
-            else{
-                if let y = sender as? UISwipeGestureRecognizer{
-                    appendsymbol("&")
-                    displayinput(text_to_display)
-                }
-            }
-            firstgesture = nil
-        }
-        var temp_op: String = ""
-        var text_op: String = ""
-        if let SwipeGesture = sender as? UISwipeGestureRecognizer
-        {
-            switch SwipeGesture.direction
-            {
-            case UISwipeGestureRecognizer.Direction.right:
-                //if downswipeflag == 1 {
-                //    if Date().timeIntervalSinceReferenceDate - downswipetime! < 0.5{
-                temp_op = "+"
-                text_op = "plus"
-            case UISwipeGestureRecognizer.Direction.left:
-                temp_op = "-"
-                text_op = "minus"
-            case UISwipeGestureRecognizer.Direction.up:
-                temp_op = "*"
-                text_op = "multiply"
-            case UISwipeGestureRecognizer.Direction.down:
-                //downswipeflag = 1
-                //downswipetime = Date().timeIntervalSinceReferenceDate
-                //DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // change 2 to desired number of seconds
-                //    if self.downswipeflag == 1{
-                temp_op = "/"
-                text_op = "divide"
-            default:
-                break
-            }
-            if textnumber.isEmpty{
-                textnumber += temp_op
-            }
-            else{
-                op = temp_op
-                number1 = Double(textnumber)
-                textnumber = ""
-                speaktext(text_op)
-            }
-            appendsymbol(temp_op)
-            displayinput(text_to_display)
-        }
-    }*/
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        flag = 0
+        //if touchbeganbutnotendedflag == 0{
+        //    touchbeganbutnotendedflag = 1
+        //}
         for touch in touches {
             counter = counter + 1
+            flag = flag + 1
             createViewForTouch(touch: touch)
         }
-        flag = 1
+        //flag = 1
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -313,10 +306,12 @@ class ViewController2: UIViewController{
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //print("endfired")
+        //touchbeganbutnotendedflag = 0
         for touch in touches {
             removeViewForTouch(touch: touch)
         }
-        if flag == 1 {
+        if touchViews.count == 0{//flag == 1 {
             if counter == 3 && digit3flag == 0 && digit6flag == 0{
                 digit3flag = 1
             }
@@ -325,7 +320,6 @@ class ViewController2: UIViewController{
                 appenddigittocompute(counter+3)
                 displayinput(text_to_display)
                 speaktext(String(counter+3))
-                counter = 0
                 digit3flag = 0
             }
             else if digit6flag == 1 && digit3flag == 0{
@@ -333,7 +327,6 @@ class ViewController2: UIViewController{
                 appenddigittocompute(counter+6)
                 displayinput(text_to_display)
                 speaktext(String(counter+6))
-                counter = 0
                 digit6flag = 0
             }
             else{
@@ -341,13 +334,18 @@ class ViewController2: UIViewController{
                 appenddigittocompute(counter)
                 displayinput(text_to_display)
                 speaktext(String(counter))
-                counter = 0
             }
-            flag = 0
+            counter = 0
+            //flag = 0
         }
+        //else if touchViews.count == 1 && flag == 1{
+        //    appendsymbol("%")
+        //    displayinput(text_to_display)
+        //}
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //touchbeganbutnotendedflag = 0
         counter = 0
         for touch in touches {
             removeViewForTouch(touch: touch)
@@ -406,5 +404,4 @@ class ViewController2: UIViewController{
             touchViews.removeValue(forKey: touch)
         }
     }
-    
 }

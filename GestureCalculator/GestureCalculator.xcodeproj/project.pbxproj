@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8960F457218C14E10022042D /* helpscreen1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8960F456218C14E10022042D /* helpscreen1.swift */; };
+		8960F459218C14ED0022042D /* helpscreen2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8960F458218C14ED0022042D /* helpscreen2.swift */; };
 		89874448217FD089001DDFDC /* MultiStrokeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89874447217FD089001DDFDC /* MultiStrokeRecognizer.swift */; };
 		89C3C5232172063600DD79F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C3C5222172063600DD79F0 /* AppDelegate.swift */; };
 		89C3C5252172063600DD79F0 /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C3C5242172063600DD79F0 /* ViewController1.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8960F456218C14E10022042D /* helpscreen1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpscreen1.swift; sourceTree = "<group>"; };
+		8960F458218C14ED0022042D /* helpscreen2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpscreen2.swift; sourceTree = "<group>"; };
 		89874447217FD089001DDFDC /* MultiStrokeRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiStrokeRecognizer.swift; sourceTree = "<group>"; };
 		89C3C51F2172063600DD79F0 /* GestureCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GestureCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C3C5222172063600DD79F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				89C3C5292172063700DD79F0 /* Assets.xcassets */,
 				89C3C52B2172063700DD79F0 /* LaunchScreen.storyboard */,
 				89C3C52E2172063700DD79F0 /* Info.plist */,
+				8960F456218C14E10022042D /* helpscreen1.swift */,
+				8960F458218C14ED0022042D /* helpscreen2.swift */,
 			);
 			path = GestureCalculator;
 			sourceTree = "<group>";
@@ -262,8 +268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8960F457218C14E10022042D /* helpscreen1.swift in Sources */,
 				89C3C5252172063600DD79F0 /* ViewController1.swift in Sources */,
 				89E98EDD21878C2000E562A3 /* ViewController2.swift in Sources */,
+				8960F459218C14ED0022042D /* helpscreen2.swift in Sources */,
 				89874448217FD089001DDFDC /* MultiStrokeRecognizer.swift in Sources */,
 				89C3C5232172063600DD79F0 /* AppDelegate.swift in Sources */,
 			);
