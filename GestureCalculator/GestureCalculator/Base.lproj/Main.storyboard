@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TYD-Lf-rpG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,33 +21,17 @@
                                 <rect key="frame" x="0.0" y="50" width="375" height="600"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="cts-fG-19r" appends="YES" id="5qg-o8-sIU"/>
-                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="tbn-31-72U"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="M3I-1g-wGY" appends="YES" id="QDa-qq-8H1"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="imginput" destination="tf1-y7-ptu" id="Vrn-bO-isT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7pg-vl-o2b" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="cts-fG-19r">
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" id="pQg-wZ-aPZ"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="M3I-1g-wGY">
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" id="S8Q-to-tcr"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="132" y="924"/>
         </scene>
@@ -88,10 +72,6 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="nQU-2v-g4Z" appends="YES" id="cHk-8f-Tsd"/>
-                            <outletCollection property="gestureRecognizers" destination="Oed-JD-1PW" appends="YES" id="RrY-s3-fpM"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="resultview" destination="ZaL-d6-DMg" id="llq-Au-Uin"/>
@@ -99,18 +79,8 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" numberOfTouchesRequired="2" id="nQU-2v-g4Z">
-                    <connections>
-                        <segue destination="13l-LC-xIS" kind="show" id="YyH-ck-Flz"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" numberOfTouchesRequired="2" id="Oed-JD-1PW">
-                    <connections>
-                        <segue destination="13l-LC-xIS" kind="show" id="Ler-xn-ixp"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="132" y="132.68365817091455"/>
+            <point key="canvasLocation" x="-4" y="133"/>
         </scene>
         <!--View Controller2-->
         <scene sceneID="6HZ-D4-khR">
@@ -121,38 +91,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Input: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XE8-KQ-SI1">
-                                <rect key="frame" x="0.0" y="50" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="10" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Result" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xap-yC-DlL">
-                                <rect key="frame" x="0.0" y="100" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="60" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfC-hG-mSd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Toggle: Design 2">
-                                    <color key="titleColor" red="1" green="0.046545039428554702" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="8en-lw-FVJ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="z4C-B2-IQk"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="6je-Yn-IAi" appends="YES" id="zK4-sQ-iXp"/>
-                            <outletCollection property="gestureRecognizers" destination="t9K-cF-owX" appends="YES" id="mx7-9a-g3Q"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="inputarea" destination="XE8-KQ-SI1" id="dDY-yB-AZa"/>
@@ -160,18 +115,8 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g69-Y9-6fg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="6je-Yn-IAi">
-                    <connections>
-                        <segue destination="DDz-3p-1Ib" kind="show" id="mZ1-uN-djx"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="t9K-cF-owX">
-                    <connections>
-                        <segue destination="DDz-3p-1Ib" kind="show" id="s0q-NZ-VTx"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="876" y="133"/>
+            <point key="canvasLocation" x="798" y="-75"/>
         </scene>
         <!--Helpscreen2-->
         <scene sceneID="lzU-yB-UNa">
@@ -189,26 +134,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="gwS-fj-WDM"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="eN4-iG-fv7" appends="YES" id="Vxl-WB-1jb"/>
-                            <outletCollection property="gestureRecognizers" destination="wmf-Yc-GZe" appends="YES" id="QpD-2e-6V9"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="imginput" destination="QsN-1o-gxb" id="9CW-S5-N3l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pIP-uU-fP9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="eN4-iG-fv7">
-                    <connections>
-                        <segue destination="TYD-Lf-rpG" kind="show" id="db4-qx-GyL"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="wmf-Yc-GZe">
-                    <connections>
-                        <segue destination="TYD-Lf-rpG" kind="show" id="2dA-nv-PXl"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="876" y="923"/>
         </scene>
@@ -217,10 +148,4 @@
         <image name="gestureset" width="730" height="970"/>
         <image name="gestureset1" width="914" height="516"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="s0q-NZ-VTx"/>
-        <segue reference="db4-qx-GyL"/>
-        <segue reference="pQg-wZ-aPZ"/>
-        <segue reference="Ler-xn-ixp"/>
-    </inferredMetricsTieBreakers>
 </document>
