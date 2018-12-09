@@ -1,0 +1,89 @@
+Prompt,Answer,,Participant 0 - Venkatesh,,,Participant 1 - Rashmi,,,Participant 2 - Nick,,,Participant 3 - Beibin,,,,,,"Missed prompts, aggregated across participants",,,,"Missed prompts, aggregated across both tasks",,
+,,,Session 1,Session 2,,Session 1,Session 2,,Session 1,Session 2,,Session 1,Session 2,,,,,Session 1,Session 2,1+2,,Session 1,Session 2,1+2
+Task 1.1,,,,,,,,,,,,,,,,,,,,,,,,
+one,1-finger tap,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,0,0,0
+plus,2-finger swipe up,,w,c,,c,c,,c,c,,c,c,,,,,1,0,1,,1,0,1
+four,3-finger tap then 1-finger tap,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,0,0,0
+nine,1-finger swipe up then 3-finger tap,,w,c,,c,c,,c,c,,c,c,,,,,1,0,1,,1,0,1
+equals,2-finger right swipe,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,0,0,0
+multiply,3-finger swipe up,,w,c,,c,c,,c,c,,c,c,,,,,1,0,1,,1,0,1
+eight,1-finger swipe up then 2-finger tap,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,0,0,0
+five,3-finger tap then 2-finger tap,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,0,0,0
+minus,2-finger swipe down,,c,c,,w,c,,w,c,,c,c,,,,,2,0,2,,2,0,2
+decimal,long press,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,0,0,0
+power,3-finger swipe up then 3-finger swipe up,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,0,0,0
+three,3-finger tap then 1-finger swipe down,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,0,0,0
+zero,1 finger swipe down,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,0,0,0
+clear,3-finger swipe left,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,0,0,0
+seven,1-finger swipe up then 1-finger tap,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,1,0,1
+divide,3-finger swipe down,,w,c,,c,c,,c,c,,c,c,,,,,1,0,1,,1,0,1
+delete,2-finger swipe left,,c,c,,w,c,,c,c,,c,c,,,,,1,0,1,,1,0,1
+two,2-finger tap,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,0,0,0
+six,3-finger tap then 3-finger tap,,w,c,,w,c,,c,c,,c,c,,,,,2,0,2,,3,0,3
+,,,5,0,,3,0,,1,0,,0,0,,,,,,,,,,,
+,,,0.263,0.000,,0.158,0.000,,0.053,0.000,,0.000,0.000,,,,,,,,,,,
+Task 1.2,,,,,,,,,,,,,,,,,,,,,,,,
+five,3-finger tap then 2-finger tap,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+plus,2-finger swipe up,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+clear,3-finger swipe left,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+equals,2-finger swipe right,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+eight,1-finger swipe up then 2-finger tap,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+one,1-finger tap,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+multiply,3-finger swipe up,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+minus,2-finger swipe down,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+zero,1-finger swipe down,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+delete,2-finger swipe left,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+three,3-finger tap then 1-finger swipe down,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+divide,3-finger swipe down,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+two,2-finger tap,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+six,3-finger tap then 3-finger tap,,c,c,,w,c,,c,c,,c,c,,,,,1,0,1,,,,
+decimal,long press,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+seven,1-finger swipe up then 1-finger tap,,w,c,,c,c,,c,c,,c,c,,,,,1,0,1,,,,
+four,3-finger tap then 1-finger tap,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+power,3-finger swipe up then 3-finger swipe up,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+nine,1-finger swipe up then 3-finger tap,,c,c,,c,c,,c,c,,c,c,,,,,0,0,0,,,,
+,,,1,0,,1,0,,0,0,,0,0,,,,,,,,,,,
+,,,0.053,0.000,,0.053,0.000,,0.000,0.000,,0.000,0.000,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,"12.6%, 2.1%",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+Data Spreadsheet,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+Prompt column,,,,,,,,,,,,,,,,,,,,,,,,
+Prompt column contains the exact prompt that the facilitator should read. ,,,,,,,,,,,,,,,,,,,,,,,,
+"This is words, not symbols in order to be unambiguous. (e.g. write ""multiply"" instead of *, because * is ambiguous -- could be read as ""times"" or ""multiply"".)",,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+Answer column,,,,,,,,,,,,,,,,,,,,,,,,
+Contains the correct answer that we expect. Actual correct answer could be any variation on this. Facilitator should use their judgement.,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+Participant Columns,,,,,,,,,,,,,,,,,,,,,,,,
+"Record ""c"" for a correct answer and ""w"" for a wrong answer. (Participant 0 is an example.)",,,,,,,,,,,,,,,,,,,,,,,,
