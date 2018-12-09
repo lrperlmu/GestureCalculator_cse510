@@ -5,7 +5,7 @@ import os
 
 charset = [
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-    'Del', '+', '-', '*', '/', '=', 'C', '.', '^',
+     '.', '+', '-', '*', '/', '^', '=', 'Del', 'C',
 ]
 
 def is_valid_line(line):
@@ -28,13 +28,15 @@ def parse_line(line):
 
 
 # prompt -- [(char,stamp),...] for all the chars of one prompt
-# session -- [promptid: [(char,stamp),]] for all the prompts in one session
-# participant -- [sid: [promptid: [(char,stamp),...]]] for all the sessions for one participant
-# study -- [pid: [promptid: [(char,stamp),...]]] for all participants
+# session -- [prompt, ...] for all the prompts in one session
+# participant -- [session, ...] for all the sessions for one participant
+# study -- [particpant, ...] for all participants
+
 
 def parse_one_file(filename):
     # valid line is str:time, where str is in the charset and time parses as a float
-    # each time we see a blank line followed by a valid line, assume that's the start of a prompt
+    # each time we see an invalid line followed by a valid line, 
+    #    assume that's the start of a new prompt
 
     # read the file
     fp = open(filename)

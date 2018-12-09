@@ -1,6 +1,6 @@
 from __future__ import division
 
-from collections import Counter
+from collections import Counter, OrderedDict
 
 from parse_task_2 import parse_files
 
@@ -23,6 +23,10 @@ answer_key = [
     '8+77=',
     '0.913C',
     '678-578=',
+]
+charset = [
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+     '.', '+', '-', '*', '/', '^', '=', 'Del', 'C',
 ]
 
 
@@ -58,12 +62,6 @@ def levenshteinDistance(s1, s2):
                 distances_.append(1 + min((distances[i1], distances[i1 + 1], distances_[-1])))
         distances = distances_
     return distances[-1]
-
-
-# prompt -- [(char,stamp),...] for all the chars of one prompt
-# session -- [prompt, ...] for all the prompts in one session
-# participant -- [session, ...] for all the sessions for one participant
-# study -- [particpant, ...] for all participants
 
 
 def compute_session_error(session, verbose=False):
@@ -127,12 +125,48 @@ def task_2_corrected_error_by_prompt(data):
     return ret
 
 
+# prompt -- [(char,stamp),...] for all the chars of one prompt
+# session -- [prompt, ...] for all the prompts in one session
+# participant -- [session, ...] for all the sessions for one participant
+# study -- [particpant, ...] for all participants
+
+
+def task_2_input_time_by_char(data):
+    # compute intput time for each character that was not the first
+    # (explain in paper why not first)
+    char_counts = Counter()  # char: count
+    char_times = Counter()  # char: total time
+    
+    for participant in data:
+        for session in participant:
+            for prompt in session:
+                prev_stamp = 0
+                cur_stamp = 0
+                for char, stamp in prompt:
+                    prev_stamp = float(cur_stamp)
+                    cur_stamp = float(stamp)
+                    if prev_stamp == 0:
+                        continue
+                    dif = cur_stamp - prev_stamp
+                    char_counts[char] += 1
+                    char_times[char] += dif
+                    print char_counts
+                    print char_times
+                    print '\n'
+
+    ret = [(c, char_times[c] / char_counts[c]) for c in charset]
+    return ret
+
+
 if __name__ == '__main__':
     data = parse_files()
     results = task_2_corrected_error_by_participant(data)
-    print results
+    print results, '\n'
 
     results2 = task_2_corrected_error_by_prompt(data)
     for prid, error_rate in enumerate(results2):
         print 'prompt{} error rate: {}'.format(prid, error_rate)
-        
+    print '\n'
+
+    results3 = task_2_input_time_by_char(data)
+    print results3
