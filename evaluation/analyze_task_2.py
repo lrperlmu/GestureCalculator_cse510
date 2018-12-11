@@ -132,7 +132,7 @@ def task_2_corrected_error_by_prompt(data):
 
 
 def task_2_input_time_by_char(data):
-    # compute intput time for each character that was not the first
+    # compute input time for each character that was not the first
     # (explain in paper why not first)
     char_counts = Counter()  # char: count
     char_times = Counter()  # char: total time
@@ -150,12 +150,91 @@ def task_2_input_time_by_char(data):
                     dif = cur_stamp - prev_stamp
                     char_counts[char] += 1
                     char_times[char] += dif
-                    print char_counts
-                    print char_times
-                    print '\n'
+                    # print char_counts
+                    # print char_times
+                    # print '\n'
 
     ret = [(c, char_times[c] / char_counts[c]) for c in charset]
     return ret
+
+
+def task_2_input_time_by_session(data):
+    # compute input time for each character (except initial characters, divided by session)
+    char_counts = [Counter(), Counter()]  # {char: count}, one for each session
+    char_times = [Counter(), Counter()]  # {char: total time}, one for each session
+    
+    for participant in data:
+        for sid, session in enumerate(participant):
+            for prompt in session:
+                prev_stamp = 0
+                cur_stamp = 0
+                for char, stamp in prompt:
+                    prev_stamp = float(cur_stamp)
+                    cur_stamp = float(stamp)
+                    if prev_stamp == 0:
+                        continue
+                    dif = cur_stamp - prev_stamp
+                    char_counts[sid][char] += 1
+                    char_times[sid][char] += dif
+
+    ret = char_counts, char_times
+    return ret
+
+
+def task_2_input_time_by_prompt(data):
+    # compute input rate for each prompt
+
+    prids = range(15) # prompt ids
+    sids = [0, 1] # session ids
+
+    char_counts = [
+        Counter()  # char: count
+        for sid in sids
+    ]
+    times = [
+        Counter()  # char: total time
+        for sid in sids
+    ]
+    
+    for participant in data:
+        for sid, session in enumerate(participant):
+            for prid, prompt in enumerate(session):
+                char_counts[sid][prid] += len(prompt) - 1
+
+                first_stamp = float(prompt[0][1])
+                last_stamp = float(prompt[-1][1])
+                times[sid][prid] += last_stamp - first_stamp
+                
+
+    # compute rates
+    ret = [
+        [
+            prid,
+            [
+                char_counts[sid][prid]/times[sid][prid]
+                for sid in sids
+            ]
+        ]
+        for prid in prids
+    ]
+    for item in ret:
+        print item
+    return ret
+         
+
+
+def cps_sanity_check(data):
+    char_counts, char_times = task_2_input_time_by_session(data)
+    
+    session_rates = [
+        sum(char_counts[sid].values()) / sum(char_times[sid].values())
+        for sid in [0, 1]
+    ]
+    print 'characters per second in each session'
+    print session_rates
+
+    task_2_input_time_by_prompt(data)
+    
 
 
 if __name__ == '__main__':
@@ -169,4 +248,9 @@ if __name__ == '__main__':
     print '\n'
 
     results3 = task_2_input_time_by_char(data)
-    print results3
+    print results3, '\n'
+
+    results4 = task_2_input_time_by_session(data)
+    print results4, '\n'
+
+    session_rates = cps_sanity_check(data)

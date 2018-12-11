@@ -1,13 +1,19 @@
 from __future__ import division
 
 from analyze_task_2 import parse_files, task_2_corrected_error_by_participant, \
-    task_2_input_time_by_char
+    task_2_input_time_by_char, task_2_input_time_by_session
 
 from collections import OrderedDict
 import os
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import numpy as np
+
+
+charset = [
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+     '.', '+', '-', '*', '/', '^', '=', 'Del', 'C',
+]
 
 
 def task_1_err_by_participant(base_path, data_filename, output_filename):
@@ -151,6 +157,7 @@ def task_1_err_by_char(base_path, data_file, out_file):
         (label, float(data[symbols[label]])/num_tasks)
         for label in symbols
     ]
+    #chart_data = sorted(chart_data, key=lambda element: element[1])
 
     width = 0.8
     bar_xs = np.array(range(19)) + 0.1
@@ -177,6 +184,7 @@ def task_1_err_by_char(base_path, data_file, out_file):
 def task_2_time_by_char(base_path, out_path):
     raw = parse_files()
     data = task_2_input_time_by_char(raw)  # [(char, avg_time)] 
+    data = sorted(data, key=lambda element: -element[1])
 
     width = 0.8
     bar_xs = np.array(range(19)) + 0.1
@@ -201,31 +209,84 @@ def task_2_time_by_char(base_path, out_path):
 
     plt.tight_layout()
     plt.savefig(base_path + out_path)
-    plt.show()
+    #plt.show()
+
+
+def task_2_char_time_by_session(base_path, out_path):
+    raw = parse_files()
+    char_counts, char_times = task_2_input_time_by_session(raw)
+    # char_counts = [Counter(), Counter()]  # {char: count}, one for each session
+    # char_times = [Counter(), Counter()]  # {char: total time}, one for each session
+    char_rates = [
+        (
+            char,
+            [
+                char_times[sid][char]/char_counts[sid][char]
+                for sid in [0, 1]
+            ]
+        )
+
+        for char in charset
+    ]
+    char_rates = sorted(char_rates, key=lambda (char,times): -times[0])
+    print char_rates
+
+    width = 0.4
+    bar_xs = np.array(range(19))
+    bar_offsets = [0.0, 0.4]
+    colors = ['C0', 'C2']
+    
+    fig, ax = plt.subplots(figsize=(15, 3))
+    plt.style.use('seaborn-deep')
+
+    for sid in [0, 1]:
+        bar_hts = [element[1][sid] for element in char_rates]
+        bars = ax.bar(bar_xs + bar_offsets[sid], bar_hts, width, color=colors[sid])
+        for i, bar_x in enumerate(bar_xs):
+            ax.text(bar_x + bar_offsets[sid], bar_hts[i] + 0.05, 
+                    '{:.2f}'.format(bar_hts[i]), ha='center')
+
+    ax.set_title('Task 2 input time per character by session')
+    plt.ylabel('time (sec)')
+    ax.set_ylim([0, 3.6])
+    
+    plt.xlabel('character')
+    ax.set_xticks(np.array(range(19)) + 0.2)
+    ax.set_xticklabels([element[0] for element in char_rates])
+    ax.set_xlim([-0.4, 18.8])
+
+    plt.tight_layout()
+
+
+def task_2_time_by_session(base_path, out_path):
+    raw = parse_files()
+    char_counts, char_times = task_2_input_time_by_session(raw)
+    
+    session_rates = [
+        sum(char_times[sid].values()) / sum(char_counts[sid].values())
+        for sid in [0, 1]
+    ]
+
+    print [1/rate for rate in session_rates]
+
+    fig, ax = plt.subplots(figsize=(3,3))
+    plt.style.use('seaborn-deep')
+
+    bars = ax.bar([0, 1], session_rates, 0.8, color=['C0', 'C2'])
+    for i in [0, 1]:
+        ax.text(i, session_rates[i] + 0.05, '{:.2f}'.format(session_rates[i]))
+
+    plt.tight_layout()
 
 
 if __name__ == '__main__':
     base_path = os.getcwd()  # run from evaluation dir
-    task_1_err_by_participant(
-        base_path, 
-        '/raw_data/task1.csv',
-        '/fig/t1_err_by_participant.png',
-    )
+    # task_1_err_by_participant(base_path, '/raw_data/task1.csv', '/fig/t1_err_by_participant.png',)
+    # task_2_err_by_participant(base_path, '/fig/t2_err_by_participant.png',)
+    #task_1_err_by_char(base_path, '/raw_data/task1.csv', '/fig/t1_err_by_char.png',)
+    #task_2_time_by_char(base_path, '/fig/t2_time_by_char.png',)
+    task_2_char_time_by_session(base_path, '/fig/t2_char_time_by_session.png',)
+    task_2_time_by_session(base_path, '/fig/t2_time_by_session.png',)
 
-    task_2_err_by_participant(
-        base_path, 
-        '/fig/t2_err_by_participant.png',
-    )
-
-    task_1_err_by_char(
-        base_path, 
-        '/raw_data/task1.csv',
-        '/fig/t1_err_by_char.png',
-    )
-    
-    task_2_time_by_char(
-        base_path,
-        '/fig/t2_time_by_char.png',
-    )
-
+    plt.show()
 
