@@ -188,25 +188,28 @@ def task_2_input_time_by_prompt(data):
     sids = [0, 1] # session ids
 
     char_counts = [
-        Counter()  # char: count
+        Counter()  # prid: char count
         for sid in sids
     ]
     times = [
-        Counter()  # char: total time
+        Counter()  # prid: total time
         for sid in sids
     ]
     
+    # sum up the character count and time taken for each prompt across participants
     for participant in data:
         for sid, session in enumerate(participant):
             for prid, prompt in enumerate(session):
+
+                # one less than the length of the prompt because we didn't measure
+                #    time taken to input initial character
                 char_counts[sid][prid] += len(prompt) - 1
 
                 first_stamp = float(prompt[0][1])
                 last_stamp = float(prompt[-1][1])
                 times[sid][prid] += last_stamp - first_stamp
-                
 
-    # compute rates
+    # compute input rates for each prompt
     ret = [
         [
             prid,
@@ -216,9 +219,12 @@ def task_2_input_time_by_prompt(data):
             ]
         ]
         for prid in prids
-    ]
+    ]  # [prompt id, [session 1 rate, session 2 rate]]
+
+    print 'Average characters per second by prompt'
     for item in ret:
         print item
+
     return ret
          
 
@@ -230,8 +236,8 @@ def cps_sanity_check(data):
         sum(char_counts[sid].values()) / sum(char_times[sid].values())
         for sid in [0, 1]
     ]
-    print 'characters per second in each session'
-    print session_rates
+    print 'average characters per second in each session'
+    print session_rates, '\n'
 
     task_2_input_time_by_prompt(data)
     
